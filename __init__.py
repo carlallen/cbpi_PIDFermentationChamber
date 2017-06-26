@@ -71,7 +71,7 @@ class PIDFermentationChamber(FermenterController):
 
     @cbpi.try_catch(None)
     def get_fermenter(self):
-        self.api.cache.get("fermenter").get(self.fermenter_id)
+        return self.api.cache.get("fermenter").get(self.fermenter_id)
 
 class ChamberSetpointPID(object):
 
