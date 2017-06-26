@@ -9,6 +9,7 @@ class PIDFermentationChamber(FermenterController):
     i = Property.Number("Ki", True, 0.0001)
     d = Property.Number("Kd", True, 2)
     c_delay = Property.Number("Compressor Delay", True, 10, "minutes")
+    compressor_on = False
 
     def stop(self):
         super(FermenterController, self).stop()
@@ -54,13 +55,16 @@ class PIDFermentationChamber(FermenterController):
 
     @cbpi.try_catch(None)
     def cooler_on(self):
+        self.compressor_on = True
         f = self.get_fermenter()
         if f.cooler is not None:
             self.actor_on(id=int(f.cooler))
 
     @cbpi.try_catch(None)
     def cooler_off(self):
-        self.compressor_wait = datetime.datetime.utcnow() + datetime.timedelta(minutes=int(self.c_delay))
+        if self.compressor_on:
+            self.compressor_wait = datetime.datetime.utcnow() + datetime.timedelta(minutes=int(self.c_delay))
+            self.compressor_on = False
         f = self.get_fermenter()
         if f.cooler is not None:
             self.actor_off(int(f.cooler))
