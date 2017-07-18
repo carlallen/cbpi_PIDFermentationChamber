@@ -12,7 +12,6 @@ or pull into the [craftbeerpi]/modules/plugins/ directory
 * Sensor1: Beer Temperature
 * Sensor2: Chamber Temperature
 * Sensor3: Not Used
-* Compressor Delay: The time in minutes to wait between compressor cycles
 * Kp: The is the proportional gain for the PID (Default 2)
 * Ki: The the integral gain for the PID (Default 0.0001)
 * Kd: The the derivative gain for the PID (Default 2)
