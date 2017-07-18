@@ -10,7 +10,7 @@ class PIDFermentationChamber(FermenterController):
     def chart(fermenter):
         result = FermenterController.chart(fermenter)
         result.append({"name": "Chamber Temp", "data_type": "sensor", "data_id": fermenter.sensor2})
-        result.append({"name": "Chamber Target Temp", "data_type": "sensor", "data_id": fermenter.id})
+        result.append({"name": "Chamber Target Temp", "data_type": "chamber_target", "data_id": fermenter.id})
 
         return result
 
