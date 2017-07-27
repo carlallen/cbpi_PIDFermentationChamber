@@ -30,7 +30,7 @@ class PIDFermentationChamber(FermenterController):
             temp = self.get_temp()
             target_temp = self.get_target_temp()
             chamber_temp = self.get_chamber_temp()
-            self.chamber_target_temp = target_temp + int(pid.update(temp, self.get_target_temp()))
+            self.chamber_target_temp = target_temp + round(pid.update(temp, self.get_target_temp()), 1)
 
             print "Chamber Target Temp: %s", self.chamber_target_temp
             cbpi.save_to_file(self.fermenter_id, self.chamber_target_temp, prefix="chamber_target")
